@@ -77,7 +77,7 @@ public class Triangle {
     
     public boolean contains(Point p) //FIX
     {
-        if(p.x >= x && p.x <= x + width && p.y >= y && p.y <= y + height)
+        if(p.x >= x && p.x <= x + width && p.y >= y)
             return true;
         return false;
     }

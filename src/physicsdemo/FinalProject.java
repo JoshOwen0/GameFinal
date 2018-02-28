@@ -50,7 +50,7 @@ public class FinalProject extends Application {
                 sim.evolve(1.0);
                 Platform.runLater(()->sim.updateShapes());
                 try {
-                    Thread.sleep(50);
+                    Thread.sleep(25);
                 } catch (InterruptedException ex) {
 
                 }
