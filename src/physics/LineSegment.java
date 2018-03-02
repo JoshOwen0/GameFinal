@@ -77,7 +77,7 @@ public class LineSegment {
         Point origin = this.intersection(other);
         return new Ray(origin,R,speed);
     }
-         public int getYGivenX(int x){
+    public double getYGivenX(double x){
         double slope;
         double newY;
         if(this.a.x<this.b.x){
@@ -88,6 +88,6 @@ public class LineSegment {
             newY = this.b.y + slope*(x-this.b.x);
         }
         
-        return (int)newY;
+        return newY;
     }
 }

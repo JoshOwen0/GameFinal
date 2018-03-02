@@ -9,6 +9,7 @@ import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import physics.Point;
 import simulation.Simulation;
 
 public class FinalProject extends Application {
@@ -20,7 +21,30 @@ public class FinalProject extends Application {
         root.setShapes(sim.setUpShapes());
         
         Scene scene = new Scene(root, 600, 500);
-
+        root.setOnMouseMoved(e -> {
+            Point pos = sim.getPosition();
+            
+            double x = e.getSceneX();
+            double y = e.getSceneY();
+            int dx=0;
+            int dy=0;
+            if(x<pos.x)
+                sim.moveInner(-3, 0);
+                dx=-3;
+            if(x>pos.x)
+                sim.moveInner(3, 0);
+                dx=3;
+            if(y>pos.y)
+                sim.moveInner(0, 3);
+                dy=3;
+            if(y<pos.y)
+                sim.moveInner(0, -3);
+                dy=-3;
+            
+            
+            
+        });
+        root.requestFocus(); 
         root.setOnKeyPressed(e -> {
             switch (e.getCode()) {
                 case DOWN:

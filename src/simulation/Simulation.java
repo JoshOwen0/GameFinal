@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import physics.*;
 
@@ -17,7 +18,7 @@ public class Simulation {
     {
         outer = new Box(0,0,width,height,false);
         ball = new Ball(width/2,height/2,dX,dY);
-        inner = new Triangle(width - 60,height - 40, 40, 20,true);
+        inner = new Triangle(width - 60,height - 40, 60,30,true);
         lock = new ReentrantLock();
     }
     
@@ -36,7 +37,10 @@ public class Simulation {
         } 
         lock.unlock();
     }
-    
+    public Point getPosition(){
+        Point p = new Point(inner.x+inner.width/2,inner.y-inner.height/2);
+        return p;
+    }
     public void moveInner(int deltaX,int deltaY)
     {
         lock.lock();
@@ -47,16 +51,18 @@ public class Simulation {
         if(inner.x + inner.width + deltaX > outer.width)
           dX = outer.width - inner.width - inner.x;
        
-        if(inner.y + deltaY < 0)
-           dY = -inner.y;
-        if(inner.y + inner.height + deltaY > outer.height)
-           dY = outer.height - inner.height - inner.y;
+        if(inner.y - inner.height + deltaY < 0)
+           dY = 0;
+        if(inner.y + deltaY > outer.height)
+           dY = outer.height - inner.y;
         
         inner.move(dX,dY);
         if(inner.contains(ball.getRay().origin)) {
             // If we have discovered that the box has just jumped on top of
             // the ball, we nudge them apart until the box no longer
             // contains the ball.
+            
+            inner.setColor(Color.CYAN);
             int bumpX = -1;
             if(dX < 0) bumpX = 1;
             int bumpY = -1;
@@ -81,6 +87,7 @@ public class Simulation {
     
     public void updateShapes()
     {
+        inner.setColor(Color.WHITE);
         inner.updateShape();
         ball.updateShape();
     }

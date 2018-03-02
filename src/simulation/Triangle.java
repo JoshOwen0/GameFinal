@@ -77,9 +77,17 @@ public class Triangle {
     
     public boolean contains(Point p) //FIX
     {
-        if(p.x >= x && p.x <= x + width && p.y >= y)
-            return true;
+        
+        if(p.x >= x && p.x <= x + width && p.y <= y + height ){
+            if((p.y >= walls.get(1).getYGivenX(p.x)) || (p.y >= walls.get(2).getYGivenX(p.x))){
+                //return true;
+            }
+        }
+            
         return false;
+    }
+    public void setColor(Color c){
+        r.setFill(c);
     }
     
     public Shape getShape()
