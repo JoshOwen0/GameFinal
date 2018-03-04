@@ -80,7 +80,7 @@ public class Triangle {
         
         if(p.x >= x && p.x <= x + width && p.y <= y + height ){
             if((p.y >= walls.get(1).getYGivenX(p.x)) || (p.y >= walls.get(2).getYGivenX(p.x))){
-                return true;
+                //return true;
             }
         }
             
