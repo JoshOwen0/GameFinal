@@ -50,29 +50,7 @@ public class FinalProject extends Application {
                 dy=-3;
             sim.moveInner(dx, dy);
         }}).start();
-//        root.setOnMouseMoved(e -> {
-//            Point pos = sim.getPosition();
-//            
-//            double x = e.getSceneX();
-//            double y = e.getSceneY();
-//            int dx=0;
-//            int dy=0;
-//            if(x<pos.x)
-//                sim.moveInner(-3, 0);
-//                dx=-3;
-//            if(x>pos.x)
-//                sim.moveInner(3, 0);
-//                dx=3;
-//            if(y>pos.y)
-//                sim.moveInner(0, 3);
-//                dy=3;
-//            if(y<pos.y)
-//                sim.moveInner(0, -3);
-//                dy=-3;
-//            
-//            
-//            
-//        });
+
         root.requestFocus(); 
         root.setOnKeyPressed(e -> {
             switch (e.getCode()) {
@@ -96,7 +74,7 @@ public class FinalProject extends Application {
         primaryStage.setScene(scene);
         primaryStage.setOnCloseRequest((event)->System.exit(0));
         primaryStage.show();
-
+        
         // This is the main animation thread
         new Thread(() -> {
             while (true) {

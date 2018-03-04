@@ -8,6 +8,8 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import physics.*;
 import java.awt.Point;
+import java.net.ServerSocket;
+import java.net.Socket;
 
 public class Simulation {
     private Box outer;
@@ -21,6 +23,8 @@ public class Simulation {
         ball = new Ball(width/2,height/2,dX,dY);
         inner = new Triangle(width - 60,height - 40, 60,40,true);
         lock = new ReentrantLock();
+        
+        
     }
     
     public void evolve(double time)
