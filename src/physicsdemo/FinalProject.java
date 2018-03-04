@@ -5,11 +5,12 @@
  */
 package physicsdemo;
 
+import java.awt.MouseInfo;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import physics.Point;
+import java.awt.Point;
 import simulation.Simulation;
 
 public class FinalProject extends Application {
@@ -21,29 +22,57 @@ public class FinalProject extends Application {
         root.setShapes(sim.setUpShapes());
         
         Scene scene = new Scene(root, 600, 500);
-        root.setOnMouseMoved(e -> {
-            Point pos = sim.getPosition();
+        new Thread( () -> {while(true){
+            Point p = MouseInfo.getPointerInfo().getLocation();
             
-            double x = e.getSceneX();
-            double y = e.getSceneY();
+            Point pos = sim.getPosition();
+            try{
+                Thread.sleep(25);
+            }catch(Exception ex){
+                ex.printStackTrace();
+            }
+            double x = p.x;
+            double y = p.y;
             int dx=0;
             int dy=0;
-            if(x<pos.x)
-                sim.moveInner(-3, 0);
+            //sim.moveInner((int)x - pos.x, (int)y - pos.y);
+            if(x<pos.x && Math.abs((int)x- pos.x) >3)
+                //sim.moveInner(-3, 0);
                 dx=-3;
-            if(x>pos.x)
-                sim.moveInner(3, 0);
+            if(x>pos.x && Math.abs((int)x- pos.x) >3)
+                //sim.moveInner(3, 0);
                 dx=3;
-            if(y>pos.y)
-                sim.moveInner(0, 3);
+            if(y>pos.y && Math.abs((int)y- pos.y) >3)
+                //sim.moveInner(0, 3);
                 dy=3;
-            if(y<pos.y)
-                sim.moveInner(0, -3);
+            if(y<pos.y && Math.abs((int)y- pos.y) >3)
+                //sim.moveInner(0, -3);
                 dy=-3;
-            
-            
-            
-        });
+            sim.moveInner(dx, dy);
+        }}).start();
+//        root.setOnMouseMoved(e -> {
+//            Point pos = sim.getPosition();
+//            
+//            double x = e.getSceneX();
+//            double y = e.getSceneY();
+//            int dx=0;
+//            int dy=0;
+//            if(x<pos.x)
+//                sim.moveInner(-3, 0);
+//                dx=-3;
+//            if(x>pos.x)
+//                sim.moveInner(3, 0);
+//                dx=3;
+//            if(y>pos.y)
+//                sim.moveInner(0, 3);
+//                dy=3;
+//            if(y<pos.y)
+//                sim.moveInner(0, -3);
+//                dy=-3;
+//            
+//            
+//            
+//        });
         root.requestFocus(); 
         root.setOnKeyPressed(e -> {
             switch (e.getCode()) {

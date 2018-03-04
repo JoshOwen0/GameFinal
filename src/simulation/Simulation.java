@@ -7,6 +7,7 @@ import java.util.concurrent.locks.ReentrantLock;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Shape;
 import physics.*;
+import java.awt.Point;
 
 public class Simulation {
     private Box outer;
@@ -38,7 +39,7 @@ public class Simulation {
         lock.unlock();
     }
     public Point getPosition(){
-        Point p = new Point(inner.x+inner.width/2,inner.y-inner.height/2);
+        Point p = new Point(inner.x+inner.width/2,inner.y);
         return p;
     }
     public void moveInner(int deltaX,int deltaY)
