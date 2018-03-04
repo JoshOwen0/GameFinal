@@ -14,12 +14,6 @@ public class LineSegment {
         this.a = a;
         this.b = b;
     }
-    public Point getStartPoint(){
-        return this.a;
-    }
-    public Point getEndPoint(){
-        return this.b;
-    }
     public void move(int deltaX,int deltaY)
     {
         a.x += deltaX;

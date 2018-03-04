@@ -18,7 +18,7 @@ public class Simulation {
     {
         outer = new Box(0,0,width,height,false);
         ball = new Ball(width/2,height/2,dX,dY);
-        inner = new Triangle(width - 60,height - 40, 60,30,true);
+        inner = new Triangle(width - 60,height - 40, 60,40,true);
         lock = new ReentrantLock();
     }
     

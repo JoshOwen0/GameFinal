@@ -80,7 +80,7 @@ public class Triangle {
         
         if(p.x >= x && p.x <= x + width && p.y <= y + height ){
             if((p.y >= walls.get(1).getYGivenX(p.x)) || (p.y >= walls.get(2).getYGivenX(p.x))){
-                //return true;
+                return true;
             }
         }
             
@@ -105,9 +105,9 @@ public class Triangle {
     
     public void updateShape()
     {
-        Point p1 = walls.get(0).getStartPoint();
-        Point p2 = walls.get(1).getStartPoint();
-        Point p3 = walls.get(2).getStartPoint();
+        Point p1 = walls.get(0).a;
+        Point p2 = walls.get(1).a;
+        Point p3 = walls.get(2).a;
         
         r.getPoints().clear();
         r.getPoints().addAll(new Double[]{
