@@ -11,6 +11,8 @@ import javafx.application.Platform;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import java.awt.Point;
+import javafx.geometry.Rectangle2D;
+import javafx.stage.Screen;
 import simulation.Simulation;
 
 public class FinalProject extends Application {
@@ -70,10 +72,18 @@ public class FinalProject extends Application {
         });
         root.requestFocus(); 
 
+        Screen screen = Screen.getPrimary();
+        Rectangle2D bounds = screen.getVisualBounds();
+
+        primaryStage.setX(bounds.getMinX());
+        primaryStage.setY(bounds.getMinY());
+        primaryStage.setWidth(bounds.getWidth());
+        primaryStage.setHeight(bounds.getHeight());
         primaryStage.setTitle("Game Physics");
         primaryStage.setScene(scene);
         primaryStage.setOnCloseRequest((event)->System.exit(0));
         primaryStage.show();
+        
         
         // This is the main animation thread
         new Thread(() -> {
